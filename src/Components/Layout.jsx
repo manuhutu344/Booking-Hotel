@@ -4,7 +4,7 @@ import Nav from './Nav'
 
 function Layout() {
   return (
-    <div>
+    <div className='p-4'>
     <Nav />
     <Outlet />
     </div>
