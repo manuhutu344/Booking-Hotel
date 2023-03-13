@@ -3,7 +3,7 @@ import React from 'react'
 function Login() {
   return (
     <div className='mt-4 grow flex items-center justify-around'>
-    <div className='-mt-8'>
+    <div className='mb-64'>
     <h1 className='text-4xl text-center mb-4'>Login Ke Akun Anda</h1>
     <form className='max-w-md mx-auto'>
     <input type='email' placeholder='Masukan Email Anda'  />
