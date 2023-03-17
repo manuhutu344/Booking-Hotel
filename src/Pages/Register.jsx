@@ -7,16 +7,16 @@ function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function registerUser(e){
+ async function registerUser(e){
     e.preventDefault()
     try {
-      axios.post('/user/register', {
+     await axios.post('/user/register', {
         name,
         email,
         password,
       })
       alert('Akun Anda Berhasil Dibuat')
-    } catch (error) {
+    } catch (e) {
       alert('Registrasi Gagal Silahkan Coba Lagi')
     }
   }
