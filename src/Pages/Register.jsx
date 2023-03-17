@@ -9,11 +9,16 @@ function Register() {
 
   function registerUser(e){
     e.preventDefault()
-    axios.post('/user/register', {
-      name,
-      email,
-      password,
-    })
+    try {
+      axios.post('/user/register', {
+        name,
+        email,
+        password,
+      })
+      alert('Akun Anda Berhasil Dibuat')
+    } catch (error) {
+      alert('Registrasi Gagal Silahkan Coba Lagi')
+    }
   }
   return (
     <div className='mt-4 grow flex items-center justify-around'>
