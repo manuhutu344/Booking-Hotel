@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { UserContext } from '../Components/UserContext'
 
 function Account() {
@@ -13,7 +13,13 @@ function Account() {
         return <Navigate to={'/login'} />
     }
   return (
-    <div>Ini Akun Dari {user?.name}</div>
+    <div>
+    <nav className='w-full flex justify-center mt-8 gap-2'>
+    <Link className='py- px-6 bg-primary text-white rounded-full' to={'/akun'}>Profil Saya</Link>
+    <Link className='py- px-6' to={'/akun/bookings'}>Bookingan Saya</Link>
+    <Link className='py- px-6' to={'/akun/akomodasi'}>Akomodasi Saya</Link>
+    </nav>
+    </div>
   )
 }
 
