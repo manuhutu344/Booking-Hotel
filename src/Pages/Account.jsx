@@ -6,7 +6,7 @@ function Account() {
     const {ready, user} = useContext(UserContext)
 
     if(!ready){
-        return 'Tunggu Yah...'
+        return 'Tuggu Dulu Brooo ....'
     }
 
     if(ready && !user){
