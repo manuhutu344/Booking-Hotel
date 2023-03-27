@@ -6,6 +6,7 @@ import Layout from './Components/Layout'
 import Register from './Pages/Register'
 import axios from 'axios'
 import { UserContextProvider } from './Components/UserContext'
+import Account from './Pages/Account'
 
 axios.defaults.baseURL = 'http://127.0.0.1:4000'
 axios.defaults.withCredentials = true
@@ -19,6 +20,7 @@ function App() {
     <Route index element={<Home />} />
     <Route path='/login' element={<Login />} />
     <Route path='/buat' element={<Register />} />
+    <Route path='/akun' element={<Account />} />
     </Route>
     </Routes>
     </UserContextProvider>
