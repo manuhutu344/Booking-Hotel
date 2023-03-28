@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 import { Link, Navigate } from 'react-router-dom'
+import Loading from '../Components/Loading'
 import { UserContext } from '../Components/UserContext'
 
 function Account() {
     const {ready, user} = useContext(UserContext)
 
     if(!ready){
-        return 'Tuggu Dulu Brooo ....'
+        return <center className='mt-11'><Loading /></center>
     }
 
     if(ready && !user){
