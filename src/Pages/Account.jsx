@@ -6,6 +6,11 @@ import { UserContext } from '../Components/UserContext'
 function Account() {
     const {ready, user} = useContext(UserContext)
 
+    let {subpage} = useParams()
+    if (subpage === undefined){
+      subpage = 'akun'
+    }
+
     if(!ready){
         return <center className='mt-11'><Loading /></center>
     }
@@ -14,10 +19,7 @@ function Account() {
         return <Navigate to={'/login'} />
     }
 
-    let {subpage} = useParams()
-    if (subpage === undefined){
-      subpage = 'akun'
-    }
+    
 
     function linkClasses(type=null){
       let classes =  'py-2 px-6'
