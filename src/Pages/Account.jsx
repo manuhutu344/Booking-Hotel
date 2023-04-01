@@ -1,21 +1,29 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Loading from '../Components/Loading'
 import { UserContext } from '../Components/UserContext'
+import axios from 'axios'
 
 function Account() {
-    const {ready, user} = useContext(UserContext)
+    const [redirect, setRedirect] = useState(null)
+    const {ready, user, setUser} = useContext(UserContext)
 
     let {subpage} = useParams()
     if (subpage === undefined){
       subpage = 'akun'
     }
 
+    async function logout(){
+      await axios.post('/user/logout')
+      setRedirect('/')
+      setUser(null)
+    }
+
     if(!ready){
         return <center className='mt-11'><Loading /></center>
     }
 
-    if(ready && !user){
+    if(ready && !user && !redirect){
         return <Navigate to={'/login'} />
     }
 
@@ -29,13 +37,23 @@ function Account() {
       return classes
     }
 
+    if(redirect){
+      return <Navigate to={redirect} />
+    }
+
   return (
     <div>
-    <nav className='w-full flex justify-center mt-8 gap-2'>
+    <nav className='w-full flex justify-center mt-8 gap-2 mb-8'>
     <Link className= {linkClasses('akun')} to={'/akun'}>Profil Saya</Link>
     <Link className={linkClasses('bookings')} to={'/akun/bookings'}>Bookingan Saya</Link>
     <Link className= {linkClasses('akomodasi')} to={'/akun/akomodasi'}>Akomodasi Saya</Link>
     </nav>
+    {subpage === 'akun' && (
+      <div className='text-center max-w-lg mx-auto'>
+      Selamat Datang {user.name} ({user.email})<hr />
+      <button onClick={logout} className='primary max-w-sm mt-2'>Keluar</button>
+      </div>
+    )}
     </div>
   )
 }
