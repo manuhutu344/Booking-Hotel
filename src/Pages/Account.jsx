@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import Loading from '../Components/Loading'
 import { UserContext } from '../Components/UserContext'
 import axios from 'axios'
+import Akomodasi from './Akomodasi'
 
 function Account() {
     const [redirect, setRedirect] = useState(null)
@@ -53,6 +54,9 @@ function Account() {
       Selamat Datang {user.name} ({user.email})<hr />
       <button onClick={logout} className='primary max-w-sm mt-2'>Keluar</button>
       </div>
+    )}
+    {subpage === 'akomodasi' && (
+      <Akomodasi />
     )}
     </div>
   )
