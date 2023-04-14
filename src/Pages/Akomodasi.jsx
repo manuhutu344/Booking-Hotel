@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link, useParams} from 'react-router-dom'
 
 function Akomodasi() {
   const {action} = useParams()
+  const [title, setTitle] = useState('')
+  const [address, setAddress] = useState('')
+  const [addedPhotos, setAddedPhotos] = useState([])
+  const [photoLink, setPhotoLink] = useState('')
+  const [description, setDescription] = useState('')
+  const [perks, setPerks] = useState([])
+  const [extraInfo, setExtraInfo] = useState('')
+  const [checkIn, setCheckIn] = useState('')
+  const [checkOut, setCheckOut] = useState('')
+  const [maxGuests, setMaxGuests] = useState(1)
+  function inputHeader(text){
+    return(
+      <h2 className='text-2xl mt-4'>{text}</h2>
+    )
+  }
+  function inputDescription(text){
+    return(
+      <p className='text-gray-500 text-sm'>{text}</p>
+    )
+  }
+  function preInput(header, description){
+    return(
+      <>
+      {inputHeader(header)}
+      {inputDescription(description)}
+      </>
+    )
+  }
   return (
     <div>
     {action !== 'new' && (
@@ -18,13 +46,11 @@ function Akomodasi() {
     {action === 'new' && (
       <div>
       <form>
-      <h2 className='text-2xl mt-4'>Judul</h2>
-      <p className='text-gray-500 text-sm'>judul untuk tempat Anda. Harus pendek dan menarik seperti dalam iklan</p>
+      {preInput('Judul', 'judul untuk tempat Anda. Harus pendek dan menarik seperti dalam iklan')}
       <input type='text' placeholder='Masukan Judul' />
-      <h2 className='text-2xl mt-4'>Alamat</h2>
-      <p className='text-gray-500 text-sm'>Masukan Alamat untuk tempat Anda.</p>
+      {preInput('Alamat', 'Masukan Alamat untuk tempat Anda.')}
       <input type='text' placeholder='Masukan Alamat Anda' />
-      <h2 className='text-2xl mt-4'>Foto</h2>
+      {preInput('Foto','Masukan foto dengan benar')}
       <div className='flex gap-2'>
       <input type='text' placeholder={'Tambahkan menggunakan link ....jpg'} />
       <button className='bg-gray-200 px-4 rounded-2xl'>Masukan&nbsp;Foto</button>
@@ -37,11 +63,9 @@ function Akomodasi() {
       Upload
       </button>
       </div>
-      <h2 className='text-2xl mt-4'>Deskripsi</h2>
-      <p className='text-gray-500 text-sm'>Deskripsikan tempat Anda.</p>
+      {preInput('Deskripsi','Deskripsikan tempat Anda.')}
       <textarea />
-      <h2 className='text-2xl mt-4'>Keuntungan</h2>
-      <p className='text-gray-500 text-sm'>Pililah semua keuntungan pada tempat anda</p>
+      {preInput('Keuntungan','Pililah semua keuntungan pada tempat anda')}
       <div className='grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6'>
       <label className='border p-4 flex rounded-2xl gap-2 items-center cursor-pointer'>
       <input type='checkbox' />
@@ -91,11 +115,9 @@ function Akomodasi() {
 <span>Radio</span>
       </label>
       </div>
-      <h2 className='text-2xl mt-4'>Info Tambahan</h2>
-      <p className='text-gray-500 text-sm'>Aturan dan lain sebagainya</p>
+      {preInput('Info Tambahan','Aturan dan lain sebagainya')}
       <textarea />
-      <h2 className='text-2xl mt-4'>Check in</h2>
-      <p className='text-gray-500 text-sm'>Tambahkan Check in</p>
+      {preInput('Check in','Tambahkan Check in')}
       <div className='grid gap-2 sm:grid-cols-3'>
       <div>
       <h3 className='mt-2 -mb-1'>
