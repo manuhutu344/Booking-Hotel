@@ -68,7 +68,7 @@ function Akomodasi() {
       <div className='mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
       {addedPhotos.length > 0 && addedPhotos.map(Link =>(
         <div>
-        <img className='rounded-2xl' src={'http://localhost:4000/uploads'+Link} alt='' />
+        <img className='rounded-2xl' src={'http://localhost:4000/upload'+Link} alt='' />
         </div>
       ))}
       <button className='flex gap-1 justify-center border bg-transparent rounded-2xl p-8 text-2xl text-gray-600'>
