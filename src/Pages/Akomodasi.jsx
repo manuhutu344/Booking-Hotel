@@ -35,7 +35,7 @@ function Akomodasi() {
   }
   async function addPhotoByLink(e){
     e.preventDefault()
-    const {data:filename} = await axios.post('/post/upload-by-link', {Link:photoLink})
+    const {data:filename} = await axios.post('/upload-by-link', {Link:photoLink})
     setAddedPhotos(prev =>{
       return[...prev, filename]
     })
@@ -65,10 +65,10 @@ function Akomodasi() {
       <input type='text' value={photoLink} onChange={e => setPhotoLink(e.target.value)} placeholder={'Tambahkan menggunakan link ....jpg'} />
       <button onClick={addPhotoByLink} className='bg-gray-200 px-4 rounded-2xl'>Masukan&nbsp;Foto</button>
       </div>
-      <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
+      <div className='mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
       {addedPhotos.length > 0 && addedPhotos.map(Link =>(
         <div>
-        {Link}
+        <img className='rounded-2xl' src={'http://localhost:4000/uploads'+Link} alt='' />
         </div>
       ))}
       <button className='flex gap-1 justify-center border bg-transparent rounded-2xl p-8 text-2xl text-gray-600'>
