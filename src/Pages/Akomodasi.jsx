@@ -50,9 +50,9 @@ function Akomodasi() {
     axios.post('/post/upload', data, {
       headers: {'Content-type' : 'multipart/form-data'}
     }).then(response =>{
-      const {data:filename} = response
+      const {data:filenames} = response
       setAddedPhotos(prev =>{
-        return[...prev, filename]
+        return[...prev, ...filenames]
       })
     })
   }
