@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Link, useParams} from 'react-router-dom'
+import {Link, Navigate, useParams} from 'react-router-dom'
 import LabelKeuntungan from '../Components/LabelKeuntungan'
 import axios from 'axios'
 import PhotosUploader from '../Components/PhotosUploader'
@@ -15,6 +15,7 @@ function Akomodasi() {
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
   const [maxGuests, setMaxGuests] = useState(1)
+  const [redirect, setRedirect] = useState('')
   function inputHeader(text){
     return(
       <h2 className='text-2xl mt-4'>{text}</h2>
@@ -33,6 +34,17 @@ function Akomodasi() {
       </>
     )
   }
+
+  async function addNewPlace(e){
+    e.preventDefault()
+    const placeData = {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests}
+    await axios.post('/post/place', placeData)
+    setRedirect('/akun/akomodasi')
+  }
+
+  if(redirect){
+    return <Navigate to ={redirect} />
+  }
   
   return (
     <div>
@@ -48,7 +60,7 @@ function Akomodasi() {
     )}
     {action === 'new' && (
       <div>
-      <form>
+      <form onSubmit={addNewPlace}>
       {preInput('Judul', 'judul untuk tempat Anda. Harus pendek dan menarik seperti dalam iklan')}
       <input type='text' value={title} onChange={e => setTitle(e.target.value)} placeholder='Masukan Judul' />
       {preInput('Alamat', 'Masukan Alamat untuk tempat Anda.')}
