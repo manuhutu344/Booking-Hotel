@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import LabelKeuntungan from '../Components/LabelKeuntungan'
 import PhotosUploader from '../Components/PhotosUploader'
+import AccountNav from '../Components/AccountNav'
+import axios from 'axios'
+import { Navigate } from 'react-router-dom'
 
 function PlacesFormPage() {
   const [title, setTitle] = useState('')
@@ -12,6 +15,7 @@ function PlacesFormPage() {
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
   const [maxGuests, setMaxGuests] = useState(1)
+  const [redirect, setRedirect] = useState(false)
   function inputHeader(text){
     return(
       <h2 className='text-2xl mt-4'>{text}</h2>
@@ -35,9 +39,14 @@ function PlacesFormPage() {
     e.preventDefault()
     const placeData = {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests}
     await axios.post('/post/place', placeData)
+    setRedirect(true)
+  }
+  if (redirect){
+    return <Navigate to={'/akun/akomodasi'} />
   }
   return (
     <div>
+    <AccountNav />
       <form onSubmit={addNewPlace}>
       {preInput('Judul', 'judul untuk tempat Anda. Harus pendek dan menarik seperti dalam iklan')}
       <input type='text' value={title} onChange={e => setTitle(e.target.value)} placeholder='Masukan Judul' />
