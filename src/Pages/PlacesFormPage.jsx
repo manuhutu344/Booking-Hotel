@@ -53,19 +53,31 @@ function PlacesFormPage() {
     )
   }
 
-  async function addNewPlace(e){
+  async function savePlace(e){
     e.preventDefault()
-    const placeData = {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests}
-    await axios.post('/post/place', placeData)
+    const placeDate = {
+      title, address, addedPhotos, 
+      description, perks, extraInfo, 
+      checkIn, checkOut, maxGuests
+    }
+    if(id){
+      await axios.put('/post/update', {
+        id,...placeDate
+      })
+      setRedirect(true)
+    }else{
+    await axios.post('/post/place', placeDate)
     setRedirect(true)
   }
+    }
+
   if (redirect){
     return <Navigate to={'/akun/akomodasi'} />
   }
   return (
     <div>
     <AccountNav />
-      <form onSubmit={addNewPlace}>
+      <form onSubmit={savePlace}>
       {preInput('Judul', 'judul untuk tempat Anda. Harus pendek dan menarik seperti dalam iklan')}
       <input type='text' value={title} onChange={e => setTitle(e.target.value)} placeholder='Masukan Judul' />
       {preInput('Alamat', 'Masukan Alamat untuk tempat Anda.')}
