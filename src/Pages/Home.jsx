@@ -14,7 +14,7 @@ export default function Home() {
       <div>
       <div className='bg-gray-500 rounded-2xl flex'>
       {place.photos?.[0] && (
-        <img className='rounded-2xl' src={'http://localhost:4000/upload/'+place.photos?.[0]} alt='' />
+        <img className='rounded-2xl object-cover aspect-square' src={'http://localhost:4000/upload/'+place.photos?.[0]} alt='' />
       )}
       </div>
       {place.title}
