@@ -16,6 +16,7 @@ function PlacesFormPage() {
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
   const [maxGuests, setMaxGuests] = useState(1)
+  const [price, setPrice] = useState(100)
   const [redirect, setRedirect] = useState(false)
   useEffect(()=>{
     if(!id){
@@ -32,6 +33,7 @@ function PlacesFormPage() {
       setCheckIn(data.checkIn)
       setCheckOut(data.checkOut)
       setMaxGuests(data.maxGuests)
+      setPrice(data.price)
     })
   },[id])
   function inputHeader(text){
@@ -58,7 +60,7 @@ function PlacesFormPage() {
     const placeDate = {
       title, address, addedPhotos, 
       description, perks, extraInfo, 
-      checkIn, checkOut, maxGuests
+      checkIn, checkOut, maxGuests, price
     }
     if(id){
       await axios.put('/post/update', {
@@ -93,7 +95,7 @@ function PlacesFormPage() {
       {preInput('Info Tambahan','Aturan dan lain sebagainya')}
       <textarea value={extraInfo} onChange={e => setExtraInfo(e.target.value)} />
       {preInput('Check in','Tambahkan Check in')}
-      <div className='grid gap-2 sm:grid-cols-3'>
+      <div className='grid gap-2 grid-cols-2 md:grid-cols-4'>
       <div>
       <h3 className='mt-2 -mb-1'>
       Waktu Check in
@@ -111,6 +113,12 @@ function PlacesFormPage() {
       Batas pengunjung
       </h3>
       <input type='number' value={maxGuests} onChange={e => setMaxGuests(e.target.value)} />
+      </div>
+      <div>
+      <h3 className='mt-2 -mb-1'>
+      Harga Permalam
+      </h3>
+      <input type='number' value={price} onChange={e => setPrice(e.target.value)} />
       </div>
       </div>
       <button className='primary my-4'>Simpan</button>
