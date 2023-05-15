@@ -9,6 +9,7 @@ import { UserContextProvider } from './Components/UserContext'
 import Account from './Pages/Account'
 import Akomodasi from './Pages/Akomodasi'
 import PlacesFormPage from './Pages/PlacesFormPage'
+import PlacePage from './Pages/PlacePage'
 
 axios.defaults.baseURL = 'http://127.0.0.1:4000'
 axios.defaults.withCredentials = true
@@ -26,6 +27,7 @@ function App() {
     <Route path='/akun/akomodasi' element={<Akomodasi />} />
     <Route path='/akun/akomodasi/new' element={<PlacesFormPage />} />
     <Route path='/akun/akomodasi/:id' element={<PlacesFormPage />} />
+    <Route path='/akomodasi/:id' element={<PlacePage />} />
     </Route>
     </Routes>
     </UserContextProvider>
