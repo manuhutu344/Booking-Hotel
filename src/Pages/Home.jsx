@@ -17,14 +17,16 @@ export default function Home() {
         <img className='rounded-2xl object-cover aspect-square' src={'http://localhost:4000/upload/'+place.photos?.[0]} alt='' />
       )}
       </div>
-      <h2 className='text-sm truncate'>
-      {place.title}
-      </h2>
-      <h3 className='font-bold'>
+      <h2 className='font-bold'>
       {place.address}
+      </h2>
+      <h3 className='text-sm text-gray-500'>
+      {place.title}
       </h3>
-      <div>
+      <div className='mt-1'>
+      <span className='font-bold'>
       Rp{place.price} Per Malam
+      </span>
       </div>
       </div>
     ))}
