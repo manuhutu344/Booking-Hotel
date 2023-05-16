@@ -22,6 +22,25 @@ function PlacePage() {
     <Link className='my-2 block font-semibold underline' target='_blank' to={'https://maps.google.com/?q='+place.address}>
     {place.address}
     </Link>
+    <div className='grid gap-2 grid-cols-[2fr_1fr]'>
+    <div>
+    {place.photos?.[0] && (
+      <div>
+      <img className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[0]} alt='' />
+      </div>
+    )}
+    </div>
+    <div className='grid'>
+    {place.photos?.[1] && (
+      <img className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[1]} alt='' />
+    )}
+    <div className='overflow-hidden'>
+    {place.photos?.[2] && (
+      <img className='aspect-square object-cover relative top-2' src={'http://localhost:4000/upload/'+place.photos[2]} alt='' />
+    )}
+    </div>
+    </div>
+    </div>
     </div>
   )
 }
