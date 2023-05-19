@@ -52,7 +52,7 @@ function PlacePage() {
     {place.address}
     </Link>
     <div className='relative'>
-    <div className='grid gap-2 grid-cols-[2fr_1fr]'>
+    <div className='grid gap-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden'>
     <div>
     {place.photos?.[0] && (
       <div>
@@ -77,6 +77,27 @@ function PlacePage() {
 </svg>
     Lihat Lebih Banyak Foto
     </button>
+    </div>
+    <div className='my-4'>
+    <h2 className='font-semibold text-2xl'>
+    Deskripsi
+    </h2>
+    {place.description}
+    </div>
+    <div className='grid grid-cols-2'>
+    <div>
+    Check-in: {place.checkIn}<br />
+    Check-out: {place.checkOut}<br />
+    Maximal Pengunjung: {place.maxGuests}
+    </div>
+    <div>
+    <div className='bg-white shadow p-4 rounded-2xl'>
+    Harga: {place.price} Per Malam
+    <button className='primary'>
+    Boking tempat ini
+    </button>
+    </div>
+    </div>
     </div>
     </div>
   )
