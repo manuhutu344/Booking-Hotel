@@ -57,17 +57,17 @@ function PlacePage() {
     <div>
     {place.photos?.[0] && (
       <div>
-      <img className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[0]} alt='' />
+      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[0]} alt='' />
       </div>
     )}
     </div>
     <div className='grid'>
     {place.photos?.[1] && (
-      <img className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[1]} alt='' />
+      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[1]} alt='' />
     )}
     <div className='overflow-hidden'>
     {place.photos?.[2] && (
-      <img className='aspect-square object-cover relative top-2' src={'http://localhost:4000/upload/'+place.photos[2]} alt='' />
+      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square object-cover relative top-2' src={'http://localhost:4000/upload/'+place.photos[2]} alt='' />
     )}
     </div>
     </div>
@@ -101,7 +101,7 @@ function PlacePage() {
     Info Tambahan
     </h2>
     </div>
-    <div className='mb-4 mt-1 text-sm text-gray-700 leading-5'>{place.extraInfo}</div>
+    <div className='mb-4 mt-2 text-sm text-gray-700 leading-5'>{place.extraInfo}</div>
     </div>
     </div>
   )
