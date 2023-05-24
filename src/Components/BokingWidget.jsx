@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {differenceInCalendarDays} from 'date-fns'
 
 function BokingWidget({place}) {
+  const [checkIn, setCheckIn] = useState('')
+  const [checkOut, setCheckOut] = useState('')
+  const [numberOfGuests, setNumberOfGuests] = useState(1)
+  let numberOfDays = 0
+  if(checkIn && checkOut){
+    numberOfDays = differenceInCalendarDays(new Date(checkOut), new Date(checkIn))
+  }
+
   return (
     <div className='bg-white shadow p-4 rounded-2xl'>
     <div className='text-2xl text-center'>
@@ -10,22 +19,25 @@ function BokingWidget({place}) {
     <div className='flex'>
     <div className='py-3 px-4'>
     <label>Check in:</label>
-    <input type='date' />
+    <input type='date' value={checkIn} onChange={e => setCheckIn(e.target.value)} />
     </div>
     <div className='py-3 px-4 border-l'>
     <label>Check out:</label>
-    <input type='date' />
+    <input type='date' value={checkOut} onChange={e => setCheckOut(e.target.value)} />
     </div>
     </div>
     <div>
     <div className='py-3 px-4 border-t'>
     <label>Jumlah Pengunjung:</label>
-    <input type='number' value={1} />
+    <input type='number' value={numberOfGuests} onChange={e => setNumberOfGuests(e.target.value)} />
     </div>
     </div>
     </div>
     <button className='primary mt-4'>
     Boking tempat ini
+    { numberOfDays > 0 && (
+      <span>  Dengan Harga RP{numberOfDays * place.price}</span>
+    )}
     </button>
     </div>
   )

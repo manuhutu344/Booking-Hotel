@@ -22,7 +22,7 @@ function PlacePage() {
         <div className='absolute inset-0 min-h-screen'>
         <div className='p-8 grid gap-4 bg-black text-white'>
         <div>
-        <h2 className='text-3xl'>Semua Foto Dari {place.title}</h2>
+        <h2 className='text-3xl mr-48'>Semua Foto Dari {place.title}</h2>
         <button onClick={() => setShowAllPhotos(false)} className='fixed right-12 top-8 flex gap-1 py-2 px-4 rounded-2xl shadow shadow-black bg-white text-black'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -57,17 +57,17 @@ function PlacePage() {
     <div>
     {place.photos?.[0] && (
       <div>
-      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[0]} alt='' />
+      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square cursor-pointer object-cover' src={'http://localhost:4000/upload/'+place.photos[0]} alt='' />
       </div>
     )}
     </div>
     <div className='grid'>
     {place.photos?.[1] && (
-      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square object-cover' src={'http://localhost:4000/upload/'+place.photos[1]} alt='' />
+      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square cursor-pointer object-cover' src={'http://localhost:4000/upload/'+place.photos[1]} alt='' />
     )}
     <div className='overflow-hidden'>
     {place.photos?.[2] && (
-      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square object-cover relative top-2' src={'http://localhost:4000/upload/'+place.photos[2]} alt='' />
+      <img onClick={()=>setShowAllPhotos(true)} className='aspect-square cursor-pointer object-cover relative top-2' src={'http://localhost:4000/upload/'+place.photos[2]} alt='' />
     )}
     </div>
     </div>
