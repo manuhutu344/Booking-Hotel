@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import {differenceInCalendarDays} from 'date-fns'
+import { Navigate } from 'react-router-dom'
+import axios from 'axios'
 
 function BokingWidget({place}) {
   const [checkIn, setCheckIn] = useState('')
@@ -7,9 +9,21 @@ function BokingWidget({place}) {
   const [numberOfGuests, setNumberOfGuests] = useState(1)
   const [name, setName] = useState('')
   const [mobile, setMobile] = useState('')
+  const [redirect, setRedirect] = useState('')
   let numberOfDays = 0
   if(checkIn && checkOut){
     numberOfDays = differenceInCalendarDays(new Date(checkOut), new Date(checkIn))
+  }
+
+  async function bookThisPlace(){
+    const data = {checkIn, checkOut, numberOfGuests, name, mobile, place:place._id, price: numberOfDays * place.price}
+    const response = await axios.post('/post/boking', data)
+    const bookingId = response.data._id
+    setRedirect(`/akun/bookings/${bookingId}`)
+  }
+
+  if(redirect){
+    return <Navigate to={redirect} />
   }
 
   return (
@@ -44,7 +58,7 @@ function BokingWidget({place}) {
     </div>
     )}
     </div>
-    <button className='primary mt-4'>
+    <button onClick={bookThisPlace} className='primary mt-4'>
     Boking tempat ini
     { numberOfDays > 0 && (
       <span>  Dengan Harga RP{numberOfDays * place.price}</span>
