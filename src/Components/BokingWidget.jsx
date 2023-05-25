@@ -5,6 +5,8 @@ function BokingWidget({place}) {
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
   const [numberOfGuests, setNumberOfGuests] = useState(1)
+  const [name, setName] = useState('')
+  const [mobile, setMobile] = useState('')
   let numberOfDays = 0
   if(checkIn && checkOut){
     numberOfDays = differenceInCalendarDays(new Date(checkOut), new Date(checkIn))
@@ -32,6 +34,15 @@ function BokingWidget({place}) {
     <input type='number' value={numberOfGuests} onChange={e => setNumberOfGuests(e.target.value)} />
     </div>
     </div>
+    {numberOfDays > 0 && (
+      <div className='py-3 px-4 border-t'>
+    <label>Nama Lengkap Pemboking:</label>
+    <input type='text' value={name} onChange={e => setName(e.target.value)} />
+
+    <label>Nomor Telfon Anda:</label>
+    <input type='tel' value={mobile} onChange={e => setMobile(e.target.value)} />
+    </div>
+    )}
     </div>
     <button className='primary mt-4'>
     Boking tempat ini
