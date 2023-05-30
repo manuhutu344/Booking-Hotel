@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AccountNav from '../Components/AccountNav'
 import axios from 'axios'
+import PlaceImg from '../Components/PlaceImg'
 
 function Bokings() {
   const [bookings, setBookings] = useState([])
@@ -15,6 +16,9 @@ function Bokings() {
     <div>
     {bookings?.length > 0 && bookings.map(booking => (
       <div>
+      <div>
+      <PlaceImg place={booking.place} />
+      </div>
       {booking.checkIn}  {booking.checkOut}
       </div>
     ))}
